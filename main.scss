@@ -1,0 +1,66 @@
+main{
+    background-color:rgb(147, 189, 255);
+    .container{
+        max-width: 960px;
+    }
+    .cards{
+        margin-top: 70px;
+        .cart{
+            background-color: white;
+        }
+        .head{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: rgb(243, 243, 243);
+            border-bottom: 1px rgb(132, 132, 132) solid;
+            .image-1{
+            max-width: 50px;
+            margin: {
+                top: 5px;
+                bottom: 5px;
+                left: 15px;
+            }
+            }
+            h6{
+                margin-left: 10px;
+                text-transform: capitalize;
+            }
+        }
+        .content{
+            margin: 15px;
+            .post{
+                margin-top: 10px;
+                h6{
+                    font-size: 15px;
+                    color: rgb(140, 140, 140);
+                }
+                h5{
+                    text-transform: capitalize;
+                }
+            }
+            .comments{
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                padding-bottom: 15px;
+                i{
+                    margin-right: 5px;
+                }
+                h6{
+                    font-weight: 400;
+                    span{
+                        margin-right: 5px;
+                    }
+                }
+                }
+                
+        }
+        
+    }
+    .content{
+        .image-2{
+            width: 100%;
+        }
+    }
+}

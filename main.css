@@ -1,0 +1,60 @@
+main {
+  background-color: rgb(147, 189, 255);
+}
+main .container {
+  max-width: 960px;
+}
+main .cards {
+  margin-top: 70px;
+}
+main .cards .cart {
+  background-color: white;
+}
+main .cards .head {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgb(243, 243, 243);
+  border-bottom: 1px rgb(132, 132, 132) solid;
+}
+main .cards .head .image-1 {
+  max-width: 50px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 15px;
+}
+main .cards .head h6 {
+  margin-left: 10px;
+  text-transform: capitalize;
+}
+main .cards .content {
+  margin: 15px;
+}
+main .cards .content .post {
+  margin-top: 10px;
+}
+main .cards .content .post h6 {
+  font-size: 15px;
+  color: rgb(140, 140, 140);
+}
+main .cards .content .post h5 {
+  text-transform: capitalize;
+}
+main .cards .content .comments {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-bottom: 15px;
+}
+main .cards .content .comments i {
+  margin-right: 5px;
+}
+main .cards .content .comments h6 {
+  font-weight: 400;
+}
+main .cards .content .comments h6 span {
+  margin-right: 5px;
+}
+main .content .image-2 {
+  width: 100%;
+}/*# sourceMappingURL=main.css.map */
