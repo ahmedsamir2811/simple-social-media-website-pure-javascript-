@@ -1,3 +1,7 @@
+.form-1 {
+  display: non;
+}
+
 main {
   background-color: rgb(147, 189, 255);
 }
@@ -18,7 +22,9 @@ main .cards .head {
   border-bottom: 1px rgb(132, 132, 132) solid;
 }
 main .cards .head .image-1 {
-  max-width: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 15px;
@@ -51,8 +57,12 @@ main .cards .content .comments i {
 }
 main .cards .content .comments h6 {
   font-weight: 400;
+  margin-right: 50px;
 }
 main .cards .content .comments h6 span {
+  margin-right: 5px;
+}
+main .cards .content .comments span {
   margin-right: 5px;
 }
 main .content .image-2 {
