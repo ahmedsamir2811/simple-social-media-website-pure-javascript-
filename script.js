@@ -44,11 +44,16 @@ const posts = document.getElementById("posts")
             <div class="comments">
                 <i class="fa-solid fa-pencil"></i>
                 <h6> <span>(${post.comments_count})</span>comments</h6>
+                <span id="post-tags-${post.id}">
+                    ${post.tags.map(tag => `
+                    <span class="btn btn-sm rounded-5">${tag.name}</span>`).join('')}
+                </span>
             </div>
         </div>
     </div>
     `
         posts.innerHTML += content
+
     }
 }
 
@@ -70,25 +75,24 @@ const loginBtnClicked = () => {
         body: JSON.stringify(params)
     };
 
-    const url =`${baseUrl}/login`
+    const url = `${baseUrl}/login`
 
     fetch(url, requestOptions)
         .then(res => res.json())
         .then(res => {
             console.log('Response:', res);
-            // Do something with the response data
-            localStorage.setItem("token",res.token)
-            localStorage.setItem("user",JSON.stringify(res.user))
+
+            localStorage.setItem("token", res.token)
+            localStorage.setItem("user", JSON.stringify(res.user))
 
             const model = document.getElementById("login-model")
             const modelInstance = bootstrap.Modal.getInstance(model)
             modelInstance.hide()
-            alert("user logged in successfully")
+            showAlert("logged in successfully")
             setupUI()
-
         })
         .catch(error => {
-            console.error();('Error:', error);
+            console.error(); ('Error:', error);
         });
 }
 
@@ -106,9 +110,32 @@ const setupUI = () => {
 };
 
 
-const logout = () => { 
+const logout = () => {
     localStorage.removeItem("token")
     localStorage.removeItem("user")
-    alert("logged out successfully")
+    showAlert("logged out successfully")
     setupUI()
+}
+
+const showAlert = (customMessage) => {
+    const alertPlaceholder = document.getElementById('success-alert')
+    const appendAlert = (message, type) => {
+        const wrapper = document.createElement('div')
+        wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `   <div>${message}</div>`,
+            '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+            '</div>'
+        ].join('')
+
+        alertPlaceholder.append(wrapper)
+    }
+
+    appendAlert(customMessage, 'success')
+
+    setTimeout(() => {
+        const alert = bootstrap.Alert.getOrCreateInstance('#success-alert')
+        // alert.close()
+    }, 3000);
+
 }
