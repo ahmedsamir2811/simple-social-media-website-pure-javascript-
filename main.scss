@@ -1,7 +1,4 @@
 
-.form-1{
-    display: non;
-}
 
 main{
     background-color:rgb(147, 189, 255);
@@ -9,7 +6,7 @@ main{
         max-width: 960px;
     }
     .cards{
-        margin-top: 70px;
+        margin-top: 0px;
         .cart{
             background-color: white;
         }
@@ -74,4 +71,19 @@ main{
             width: 100%;
         }
     }
+}
+
+#add-btn{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    height: 60px;
+    width: 60px;
+    font-size: 40px;
+    color: white;
+    border-radius: 100px;
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.3);
 }

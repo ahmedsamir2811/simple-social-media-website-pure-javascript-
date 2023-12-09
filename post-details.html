@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- IMPORT BOOTSTRAP -->
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/all.min.css">
+    <!-- Normalize -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="main.css">
+    <title>Simple Social Media Website</title>
+</head>
+<body>
+
+    <div id="success-alert" class="show fade" style="position: fixed; z-index:999999; width:30%; bottom:0; right:0;">
+    </div>
+    
+    <div class="modal fade" id="create-post-model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create A New Post</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Title:</label>
+                                <input type="text" class="form-control" id="post-title-input" value="">
+                            </div>
+                            <div class="mb-3">
+                                    <textarea name="" id="post-body-input" style="width: 100%; height:100px; border-color:gray; border-radius:10px; resize:none;"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Image:</label>
+                                <input type="file" class="form-control" id="post-image-input" value="">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="createNewPostClicked()">Create</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="login-model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Username:</label>
+                                <input type="text" class="form-control" id="username-input" value="yarob99">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Password:</label>
+                                <input type="password" class="form-control" id="password-input" value="123456"></input>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="loginBtnClicked()">Login</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="register-model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Register a new account</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Profile Image:</label>
+                                <input type="file" class="form-control" id="register-image-input">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">name:</label>
+                                <input type="text" class="form-control" id="register-name-input">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Username:</label>
+                                <input type="text" class="form-control" id="register-username-input">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Email:</label>
+                                <input type="email" class="form-control" id="register-email-input">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Password:</label>
+                                <input type="password" class="form-control" id="register-password-input"></input>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="registerBtnClicked()">register</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="container">
+            <nav class="navbar container  navbar-expand-lg bg-body-tertiary col-lg-9">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Simple</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Profile</a>
+                            </li>
+                        </ul>
+    
+                        <!-- NONE - LOGIN IN USER -->
+                        <div class="d-flex" role="search" id="logged-in-div">
+                            <button id="login-btn" data-bs-toggle="modal" data-bs-target="#login-model"
+                                class="btn btn-outline-success px-2" style="margin-right: 10px;"
+                                type="submit">Login</button>
+                            <button id="register-btn" class="btn btn-outline-success" type="submit"
+                                data-bs-toggle="modal" data-bs-target="#register-model"
+                                style="margin-right: 10px;">Register
+                            </button>
+                        </div>
+                        <!-- NONE - LOGIN IN USER -->
+    
+                        <!-- FOR - LOGIN IN USER -->
+                        <div class="d-flex justify-content-end align-items-center" id="logout-div">
+                            <img id="nav-user-image" class="rounded-circle" style="width: 40px; height:40px ;" src="/images/apothecary-87-CVBQdww5JZU-unsplash.jpg" alt="">
+                            <span id="nav-username" style="margin: 0 10px;" >@ahmedsamir</span>
+                            <button onclick="logout()" data-bs-toggle="modal" class="btn btn-outline-danger px-2"
+                                type="button">logout</button>
+                        </div>
+                        <!-- FOR - LOGIN IN USER -->
+    
+                    </div>
+                </div>
+            </nav>
+
+            <div class="row d-flex justify-content-center mt-5"> 
+                <div class="col-lg-9">
+                    <h1>
+                        <span id="username-span">
+                            ahmedmsair
+                        </span>
+                        post
+                    </h1>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-center mt-n5"> 
+                <div class="cards container col-lg-9 ">
+                    <div class="cart shadow">
+                        <div class="head">
+                            <a href=""> <img class="image-1" src="/images/apothecary-87-CVBQdww5JZU-unsplash.jpg" alt=""> </a>
+                            <h6>.........</h6>
+                        </div>
+                        <div class="content">
+                            <div class="image">
+                                <img  class="image-2" src="/images/apothecary-87-CVBQdww5JZU-unsplash.jpg" alt="">
+                            </div>
+                            <div class="post">
+                                <h6>...........</h6>
+                                <h5>...........</h5>
+                                <p>.......
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="comments">
+                                <i class="fa-solid fa-pencil"></i>
+                                <h6> <span>4</span>comments</h6>
+                                <span id="">
+                                <span class="btn btn-sm rounded-5"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="/script.js"></script>
+
+
+
+</body>
+</html>

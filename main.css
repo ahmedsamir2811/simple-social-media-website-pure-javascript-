@@ -1,7 +1,3 @@
-.form-1 {
-  display: non;
-}
-
 main {
   background-color: rgb(147, 189, 255);
 }
@@ -9,7 +5,7 @@ main .container {
   max-width: 960px;
 }
 main .cards {
-  margin-top: 70px;
+  margin-top: 0px;
 }
 main .cards .cart {
   background-color: white;
@@ -67,4 +63,19 @@ main .cards .content .comments span {
 }
 main .content .image-2 {
   width: 100%;
+}
+
+#add-btn {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  height: 60px;
+  width: 60px;
+  font-size: 40px;
+  color: white;
+  border-radius: 100px;
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
 }/*# sourceMappingURL=main.css.map */
