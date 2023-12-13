@@ -12,10 +12,18 @@ main .cards .cart {
 }
 main .cards .head {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   background-color: rgb(243, 243, 243);
   border-bottom: 1px rgb(132, 132, 132) solid;
+}
+main .cards .head .user {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+main .cards .head .end {
+  margin-right: 20px;
 }
 main .cards .head .image-1 {
   width: 50px;
@@ -78,4 +86,18 @@ main .content .image-2 {
   line-height: 50px;
   cursor: pointer;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.number-info {
+  font-weight: 100;
+  color: rgb(172, 172, 172);
+}
+.number-info span {
+  font-size: 50px;
+  color: rgb(117, 117, 117);
+  margin-right: 5px;
+}
+
+.user-main-info {
+  font-weight: 500;
 }/*# sourceMappingURL=main.css.map */

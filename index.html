@@ -21,7 +21,7 @@
 <div id="success-alert" class="show fade" style="position: fixed; z-index:999999; width:30%; bottom:0; right:0;">
 </div>
 
-<div class="bg-primary" id="add-btn" data-bs-toggle="modal" data-bs-target="#create-post-model">
+<div class="bg-primary" id="add-btn" onclick="addBtnClicked()">
     +
 </div>
 
@@ -29,7 +29,7 @@
     <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create A New Post</h1>
+                    <h1 class="modal-title fs-5" id="post-model-title">Create A New Post</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -37,6 +37,7 @@
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Title:</label>
                             <input type="text" class="form-control" id="post-title-input" value="">
+                            <input type="hidden" id="post-id-input" value="">
                         </div>
                         <div class="mb-3">
                                 <textarea name="" id="post-body-input" style="width: 100%; height:100px; border-color:gray; border-radius:10px; resize:none;"></textarea>
@@ -49,7 +50,25 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="createNewPostClicked()">Create</button>
+                    <button id="post-modal-submit-btn" type="button" class="btn btn-primary" onclick="createNewPostClicked()">Create</button>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="modal fade" id="delete-post-model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="post-model-title">Are You Sure You Want To Delete The Post
+                        <span id="delete-post-title"></span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <input type="hidden" id="delete-post-id-input" value="">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="post-modal-submit-btn" type="button" class="btn btn-danger" onclick="confirmPostDelete()">Yes Delete</button>
                 </div>
             </div>
     </div>
@@ -123,7 +142,7 @@
 
 <main>
     <div class="container">
-        <nav class="navbar container  navbar-expand-lg bg-body-tertiary col-lg-9">
+        <nav class="shadow navbar container  navbar-expand-lg bg-body-tertiary col-lg-9">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Simple</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -137,7 +156,7 @@
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Profile</a>
+                            <a class="nav-link" onclick="profileClicked()" style="cursor:pointer;">Profile</a>
                         </li>
                     </ul>
 
@@ -155,8 +174,9 @@
 
                     <!-- FOR - LOGIN IN USER -->
                     <div class="d-flex justify-content-end align-items-center" id="logout-div">
-                        <img id="nav-user-image" class="rounded-circle" style="width: 40px; height:40px ;" src="/images/apothecary-87-CVBQdww5JZU-unsplash.jpg" alt="">
-                        <span id="nav-username" style="margin: 0 10px;" >@ahmedsamir</span>
+                        <img id="nav-user-image" class="rounded-circle" onclick="profileClicked()" style="width: 40px; height:40px ;cursor:pointer;"
+                            src="/images/apothecary-87-CVBQdww5JZU-unsplash.jpg" alt="">
+                        <span id="nav-username" onclick="profileClicked()" style="margin: 0 10px;cursor:pointer;">@ahmedsamir</span>
                         <button onclick="logout()" data-bs-toggle="modal" class="btn btn-outline-danger px-2"
                             type="button">logout</button>
                     </div>
@@ -165,6 +185,7 @@
                 </div>
             </div>
         </nav>
+
         <div id="posts" class="cards container col-lg-9 mt-5">
             <div class="cart">
                 <div class="head">

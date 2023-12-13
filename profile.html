@@ -2,9 +2,6 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- IMPORT BOOTSTRAP -->
     <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -17,15 +14,18 @@
 </head>
 
 <body>
-
     <div id="success-alert" class="show fade" style="position: fixed; z-index:999999; width:30%; bottom:0; right:0;">
+    </div>
+
+    <div class="bg-primary" id="add-btn" onclick="addBtnClicked()">
+        +
     </div>
 
     <div class="modal fade" id="create-post-model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create A New Post</h1>
+                    <h1 class="modal-title fs-5" id="post-model-title">Create A New Post</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -33,6 +33,7 @@
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Title:</label>
                             <input type="text" class="form-control" id="post-title-input" value="">
+                            <input type="hidden" id="post-id-input" value="">
                         </div>
                         <div class="mb-3">
                             <textarea name="" id="post-body-input"
@@ -46,7 +47,27 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="createNewPostClicked()">Create</button>
+                    <button id="post-modal-submit-btn" type="button" class="btn btn-primary"
+                        onclick="createNewPostClicked()">Create</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="delete-post-model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="post-model-title">Are You Sure You Want To Delete The Post
+                        <span id="delete-post-title"></span>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <input type="hidden" id="delete-post-id-input" value="">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="post-modal-submit-btn" type="button" class="btn btn-danger"
+                        onclick="confirmPostDelete()">Yes Delete</button>
                 </div>
             </div>
         </div>
@@ -119,6 +140,7 @@
     </div>
 
     <main>
+
         <div class="container">
             <nav class="shadow navbar container  navbar-expand-lg bg-body-tertiary col-lg-9">
                 <div class="container-fluid">
@@ -134,7 +156,7 @@
                                 <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link"  onclick="profileClicked()" style="cursor:pointer;">Profile</a>
+                                <a class="nav-link" onclick="profileClicked()" style="cursor:pointer;" >Profile</a>
                             </li>
                         </ul>
 
@@ -164,77 +186,84 @@
                 </div>
             </nav>
 
-            <div class="row d-flex justify-content-center mt-5">
-                <div class="col-lg-9">
-                    <h1>
-                        <span id="username-span">
-                        </span>
-                        ( post )
-                    </h1>
-                </div>
-            </div>
+            <div>
+                <div class="d-flex justify-content-center mt-5">
+                    <div class="col-9">
+                        <div class="card-shadow">
+                            <div class="card-body" style="background-color: white;">
+                                <div class="row d-flex justify-content-evenly  align-items-center ">
+                                    <div class="col-2 ">
+                                        <img id="header-image" style="width: 90px ; height:90px; border-radius:100px;"
+                                            src="/images/apothecary-87-CVBQdww5JZU-unsplash.jpg">
+                                    </div>
 
-            <div class="row d-flex justify-content-center mt-n5">
-                <div class="cards container col-lg-9 " id="post-details">
-                    <div class="cart shadow">
-                        <div class="head">
-                            <a href=""> <img class="image-1" src="/images/apothecary-87-CVBQdww5JZU-unsplash.jpg"
-                                    alt=""> </a>
-                            <h6>.........</h6>
-                        </div>
+                                    <div id="main-info" class="d-flex col-4 flex-column justify-content-evenly">
+                                        <div class="user-main-info mb-3" id="main-info-email">
+                                            ahmedsamir@gmail.com
+                                        </div>
+                                        <div class="user-main-info mb-3" id="main-info-name">
+                                            ahmed samir
+                                        </div>
+                                        <div class="user-main-info" id="main-info-username">
+                                            @ahmedsamir
+                                        </div>
+                                    </div>
 
-                        <div class="content">
-                            <div class="image">
-                                <img class="image-2" src="/images/apothecary-87-CVBQdww5JZU-unsplash.jpg" alt="">
-                            </div>
-                            <div class="post">
-                                <h6>...........</h6>
-                                <h5>...........</h5>
-                                <p>.......
-                                </p>
-                            </div>
-                            <hr>
-                            <div class="comments">
-                                <i class="fa-solid fa-pencil"></i>
-                                <h6> <span>(4)</span>comments</h6>
-                                <span id="">
-                                    <span class="btn btn-sm rounded-5"></span>
-                                </span>
-                            </div>
-                            <hr>
-                        </div>
 
-                        <div class="comments cards ">
-                            <div class="p-3" style="background-color: rgb(235, 235, 235);">
-                                <div class=" d-flex justify-content-start ">
-                                    <img src="/images/apothecary-87-CVBQdww5JZU-unsplash.jpg" class="rounded-circle"
-                                        width="30" height="30" alt="" srcset="">
-                                    <h6 class="ms-2">
-                                        ahmedsamir
-                                    </h6>
+                                    <div id="number-info" class="d-flex col-4 flex-column justify-content-evenly">
+                                        <div class="number-info">
+                                            <span id="posts-count">13</span>posts
+                                        </div>
+                                        <div class="number-info">
+                                            <span id="comments-count">20</span>comments
+                                        </div>
+                                    </div>
                                 </div>
-                                <div style="font-size: 15px;">
-                                    Lorem ipsum ue eum, hgjgjghk
-                                </div>
+
+
                             </div>
-                        </div>
-                        <div class="input-group mb-3" id="add-comment-div">
-                            <input id="comment-input" type="text" placeholder="add your comment here.." class="form-control">
-                            <button class="btn btn-outline-primary" type="button">send</button>
                         </div>
                     </div>
                 </div>
 
+                <div class="row d-flex justify-content-center mt-5">
+                    
+                    <div class="cards container col-lg-9 " id="user-posts">
+                        <h1>posts</h1>
+                        <div class="cart shadow">
+                            <div class="head d-flex justify-content-start">
+                                <a href=""> <img class="image-1" src="/images/apothecary-87-CVBQdww5JZU-unsplash.jpg"
+                                        alt=""> </a>
+                                <h6>.........</h6>
+                            </div>
 
-
+                            <div class="content">
+                                <div class="image">
+                                    <img class="image-2" src="/images/apothecary-87-CVBQdww5JZU-unsplash.jpg" alt="">
+                                </div>
+                                <div class="post">
+                                    <h6>...........</h6>
+                                    <h5>...........</h5>
+                                    <p>.......
+                                    </p>
+                                </div>
+                                <hr>
+                                <div class="comments">
+                                    <i class="fa-solid fa-pencil"></i>
+                                    <h6> <span>(4)</span>comments</h6>
+                                    <span id="">
+                                        <span class="btn btn-sm rounded-5"></span>
+                                    </span>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
     </main>
 
-
     <script src="/script.js"></script>
-
-
-
 </body>
 
 </html>
