@@ -9,7 +9,7 @@ const pagination = () => {
     // Add scroll event listener to the window
     window.addEventListener("scroll", () => {
         // Check if scrolled to the end of the page
-        const endOfPage = window.innerHeight + window.pageYOffset >= document.body.offsetHeight
+        const endOfPage = window.innerHeight + window.pageYOffset >= document.body.scrollHeight
 
         // Check if there are more pages to load
         if (endOfPage && currentPage < lastPage) {
@@ -26,7 +26,7 @@ pagination()
 
 //Fetches data from the API and renders the posts on the page.
 const getData = (reload = true, page = 1) => {
-    const url = `${baseUrl}/posts?limit=10&page=${page}`;
+    const url = `${baseUrl}/posts?limit=5&page=${page}`;
 
     // Fetch data from the API
     fetch(url)
